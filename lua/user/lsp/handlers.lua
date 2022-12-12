@@ -1,5 +1,6 @@
 local M = {}
 
+-- Import nvim-cmp
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_cmp_ok then
 	return
@@ -77,6 +78,10 @@ M.on_attach = function(client, bufnr)
 	end
 
 	if client.name == "sumneko_lua" then
+		client.server_capabilities.documentFormattingProvider = false
+	end
+
+	if client.name == "html" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
